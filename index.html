@@ -81,7 +81,7 @@
             color: var(--text);
         }
 
-        /* Bookkeeping Dashboard (Hidden by default) */
+        /* Bookkeeping Dashboard */
         .hidden {
             display: none !important;
         }
@@ -90,73 +90,158 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             padding-top: 20px;
             border-top: 1px dashed var(--gray-border);
         }
 
+        /* Comprehensive Entry Form */
         .student-form {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 35px;
+            background-color: var(--gray-light);
+            padding: 16px;
+            border: 1px solid var(--text);
         }
 
-        .student-form input {
-            flex: 1;
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-row label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .student-form input, .student-form select {
+            width: 100%;
             padding: 10px;
-            border: 1px solid var(--text);
+            border: 1px solid var(--gray-border);
+            background: var(--bg);
             font-size: 15px;
             outline: none;
+            color: var(--text);
+        }
+
+        .student-form input:focus, .student-form select:focus {
+            border-color: var(--text);
+        }
+
+        /* Radio Options for Mode Selection */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            padding: 5px 0;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .radio-label input {
+            width: auto;
+            accent-color: var(--text);
+            cursor: pointer;
         }
 
         .add-btn {
             background: var(--text);
             color: var(--bg);
-            border: none;
-            padding: 10px 20px;
+            border: 1px solid var(--text);
+            padding: 12px;
             font-weight: 600;
+            font-size: 15px;
             cursor: pointer;
+            margin-top: 8px;
+            text-align: center;
         }
 
+        .add-btn:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* Student Listing Card Layout */
         .student-list {
             list-style: none;
         }
 
         .student-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--text);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .student-main-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .student-name-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 6px;
+        }
+
+        .student-badge {
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid var(--text);
+            padding: 2px 6px;
+            text-transform: uppercase;
+        }
+
+        .student-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--gray-text);
+            line-height: 1.4;
+        }
+
+        .student-details-grid span {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .item-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--gray-border);
-        }
-
-        .student-info p {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .student-info span {
-            font-size: 13px;
-            color: var(--gray-text);
-        }
-
-        .actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            margin-top: 4px;
         }
 
         .fee-label {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
         }
 
         .fee-label input {
             cursor: pointer;
             accent-color: var(--text);
+            width: 16px;
+            height: 16px;
         }
 
         .delete-btn {
@@ -165,6 +250,7 @@
             color: #ff3b30;
             cursor: pointer;
             font-size: 14px;
+            text-decoration: underline;
         }
 
         /* Utility Toggle Link */
@@ -185,19 +271,19 @@
         <!-- Shared Header -->
         <header>
             <h1 id="main-title">Class 10 Mathematics</h1>
-            <p class="subtitle" id="main-subtitle">10Th Class | CBSE | State | ICSE • NCL Sindhu</p>
+            <p class="subtitle" id="main-subtitle">Personalized Board Exam Coaching • NCL Sindhu</p>
         </header>
 
         <!-- VIEW 1: Public Parent Landing Page -->
         <div id="public-view">
             <div class="bio-section">
-                <p>Welcome! My name is Suvarchala and I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated to the Class 10 board curriculum.</p>
+                <p>Welcome! I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated to the Class 10 board curriculum.</p>
                 <p>By focusing on core concept clarity, systematic problem-solving methods, and targeted board exam preparation, I help students eliminate math anxiety and build genuine academic confidence.</p>
                 <p>Located directly within the society layout—eliminating travel time so your child can stay focused on learning.</p>
             </div>
             
             <!-- Replace with your mom's phone number -->
-            <a href="https://wa.me/919849431113?text=Hi,%20I'm%20interested%20in%20the%20Class%2010%20Math%20coaching." class="cta-btn" target="_blank">
+            <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I'm%20interested%20in%20the%20Class%2010%20Math%20coaching." class="cta-btn" target="_blank">
                 Inquire via WhatsApp
             </a>
         </div>
@@ -206,16 +292,71 @@
         <div id="admin-view" class="hidden">
             <div class="dashboard-header">
                 <h2>Student Ledger</h2>
-                <span style="font-size: 13px; color: var(--gray-text);" id="student-count">0 Students</span>
+                <span style="font-size: 13px; color: var(--gray-text); font-weight: bold;" id="student-count">0 Students</span>
             </div>
 
-            <!-- Add Student Form -->
+            <!-- Enhanced Registration Form -->
             <form class="student-form" id="student-form" onsubmit="addStudent(event)">
-                <input type="text" id="student-name" placeholder="Student Name" required autocomplete="off">
-                <button type="submit" class="add-btn">Add</button>
+                <div class="form-row">
+                    <label for="student-name">Student Name</label>
+                    <input type="text" id="student-name" required autocomplete="off">
+                </div>
+                
+                <div class="form-row">
+                    <label for="contact-number">Contact Number</label>
+                    <input type="tel" id="contact-number" placeholder="e.g. 9876543210" required autocomplete="off">
+                </div>
+
+                <div class="form-row">
+                    <label for="contact-name">Name of Contact Person</label>
+                    <input type="text" id="contact-name" placeholder="e.g. Parent Name" required autocomplete="off">
+                </div>
+
+                <div class="form-row">
+                    <label for="start-date">Start Date</label>
+                    <input type="date" id="start-date" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-board">Board Selection</label>
+                    <select id="student-board" required>
+                        <option value="" disabled selected>Select Board</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="ICSE">ICSE</option>
+                        <option value="STATE">STATE</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-batch">Batch Assignment</label>
+                    <select id="student-batch" required>
+                        <option value="" disabled selected>Select Batch</option>
+                        <option value="Batch 1">Batch 1</option>
+                        <option value="Batch 2">Batch 2</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>Mode of Class</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="class-mode" value="Offline" checked> Offline
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="class-mode" value="Online"> Online
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="fees-amount">Agreed Fees Amount (₹)</label>
+                    <input type="number" id="fees-amount" placeholder="Monthly amount" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="add-btn">Save Student Record</button>
             </form>
 
-            <!-- Student List -->
+            <!-- Student Cards List -->
             <ul class="student-list" id="students-container">
                 <!-- Dynamic Content -->
             </ul>
@@ -226,7 +367,6 @@
     </div>
 
     <script>
-        // Simple state management using localStorage
         let students = JSON.parse(localStorage.getItem('tutor_students')) || [];
 
         const publicView = document.getElementById('public-view');
@@ -235,9 +375,10 @@
         const mainTitle = document.getElementById('main-title');
         const mainSubtitle = document.getElementById('main-subtitle');
 
+        document.getElementById('start-date').valueAsDate = new Date();
+
         function toggleView() {
             if (adminView.classList.contains('hidden')) {
-                // Switch to Admin
                 publicView.classList.add('hidden');
                 adminView.classList.remove('hidden');
                 toggleLink.innerText = "Switch to Public Profile";
@@ -245,7 +386,6 @@
                 mainSubtitle.innerText = "Internal Batch Management";
                 renderStudents();
             } else {
-                // Switch to Public
                 adminView.classList.add('hidden');
                 publicView.classList.remove('hidden');
                 toggleLink.innerText = "Switch to Bookkeeping View";
@@ -262,22 +402,46 @@
             countSpan.innerText = `${students.length} Student${students.length === 1 ? '' : 's'}`;
 
             if (students.length === 0) {
-                container.innerHTML = `<li style="color: var(--gray-text); font-size: 14px; text-align: center; padding: 20px 0;">No students added yet.</li>`;
+                container.innerHTML = `<li style="color: var(--gray-text); font-size: 14px; text-align: center; padding: 40px 0;">No logs added yet.</li>`;
                 return;
             }
 
             students.forEach((student, index) => {
+                let formattedDate = student.startDate;
+                try {
+                    const dateObj = new Date(student.startDate);
+                    if(!isNaN(dateObj)) {
+                        formattedDate = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+                    }
+                } catch(e) {}
+
+                // Fallback handling for older records that didn't have batch or mode tracking
+                const displayBatch = student.batch || 'Batch 1';
+                const displayMode = student.mode || 'Offline';
+
                 const li = document.createElement('li');
                 li.className = 'student-item';
                 li.innerHTML = `
-                    <div class="student-info">
-                        <p>${student.name}</p>
-                        <span>Joined: ${student.date}</span>
+                    <div class="student-main-info">
+                        <span class="student-name-title">${student.name}</span>
+                        <div class="badge-container">
+                            <span class="student-badge">${student.board}</span>
+                            <span class="student-badge" style="background: #000; color: #fff;">${displayMode}</span>
+                        </div>
                     </div>
-                    <div class="actions">
+                    
+                    <div class="student-details-grid">
+                        <div>Contact Name: <span>${student.contactName}</span></div>
+                        <div>Phone: <span>${student.contactNumber}</span></div>
+                        <div>Batch Details: <span>${displayBatch}</span></div>
+                        <div>Fees Arranged: <span>₹${student.feesAmount}</span></div>
+                        <div>Start Date: <span style="grid-column: span 1;">${formattedDate}</span></div>
+                    </div>
+
+                    <div class="item-actions">
                         <label class="fee-label">
                             <input type="checkbox" ${student.feesPaid ? 'checked' : ''} onchange="toggleFees(${index})">
-                            Fees Paid
+                            Fees Paid This Month
                         </label>
                         <button class="delete-btn" onclick="deleteStudent(${index})">Remove</button>
                     </div>
@@ -288,19 +452,40 @@
 
         function addStudent(e) {
             e.preventDefault();
-            const nameInput = document.getElementById('student-name');
-            const name = nameInput.value.trim();
             
-            if (name) {
-                const newStudent = {
-                    name: name,
-                    feesPaid: false,
-                    date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })
-                };
-                students.push(newStudent);
-                saveAndRender();
-                nameInput.value = '';
-            }
+            const name = document.getElementById('student-name').value.trim();
+            const contactNumber = document.getElementById('contact-number').value.trim();
+            const contactName = document.getElementById('contact-name').value.trim();
+            const startDate = document.getElementById('start-date').value;
+            const board = document.getElementById('student-board').value;
+            const batch = document.getElementById('student-batch').value;
+            const mode = document.querySelector('input[name="class-mode"]:checked').value;
+            const feesAmount = document.getElementById('fees-amount').value;
+            
+            const newStudent = {
+                name,
+                contactNumber,
+                contactName,
+                startDate,
+                board,
+                batch,
+                mode,
+                feesAmount,
+                feesPaid: false
+            };
+
+            students.push(newStudent);
+            saveAndRender();
+            
+            // Reset input form elements safely
+            document.getElementById('student-name').value = '';
+            document.getElementById('contact-number').value = '';
+            document.getElementById('contact-name').value = '';
+            document.getElementById('student-board').value = '';
+            document.getElementById('student-batch').value = '';
+            document.getElementById('fees-amount').value = '';
+            document.querySelector('input[name="class-mode"][value="Offline"]').checked = true;
+            document.getElementById('start-date').valueAsDate = new Date();
         }
 
         function toggleFees(index) {
@@ -309,7 +494,7 @@
         }
 
         function deleteStudent(index) {
-            if (confirm(`Remove ${students[index].name}?`)) {
+            if (confirm(`Are you sure you want to remove the log for ${students[index].name}?`)) {
                 students.splice(index, 1);
                 saveAndRender();
             }
