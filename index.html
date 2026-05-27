@@ -30,14 +30,14 @@
 
         .container {
             width: 100%;
-            max-width: 1000px; /* Expanded for desktop/tablet tabular view */
+            max-width: 1100px;
         }
 
         .hidden { display: none !important; }
 
         /* Typography & Header */
         header {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 2px solid var(--text);
             padding-bottom: 15px;
         }
@@ -127,10 +127,10 @@
             color: var(--bg);
         }
 
-        /* The Consolidated Data Grid */
+        /* The Consolidated Data Grid Table */
         .table-wrapper {
             width: 100%;
-            overflow-x: auto; /* Responsive scrolling on small viewports */
+            overflow-x: auto; 
             border: 1px solid var(--text);
             margin-bottom: 40px;
         }
@@ -139,10 +139,10 @@
             border-collapse: collapse;
             text-align: left;
             font-size: 14px;
-            min-width: 800px;
+            min-width: 900px;
         }
         th, td {
-            padding: 12px 14px;
+            padding: 10px 12px;
             border-bottom: 1px solid var(--gray-border);
             vertical-align: middle;
         }
@@ -158,10 +158,11 @@
         /* Table Input Fields (Inline Addition Row) */
         .table-input {
             width: 100%;
-            padding: 6px 8px;
+            padding: 6px;
             border: 1px solid var(--gray-border);
             font-size: 13px;
             outline: none;
+            background: var(--bg);
         }
         .table-input:focus { border-color: var(--text); }
         
@@ -171,9 +172,9 @@
             background: var(--text);
             color: var(--bg);
             border: 1px solid var(--text);
-            padding: 6px 12px;
+            padding: 5px 10px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
             width: 100%;
             text-align: center;
@@ -210,28 +211,25 @@
 <body>
 
     <div class="container">
-        <!-- GLOBAL PUBLIC INTERFACE -->
         <div id="view-public" class="hidden">
             <div class="public-card">
                 <header style="border-bottom: 1px solid var(--text); margin-bottom: 20px;">
                     <h1>Class 10 Mathematics</h1>
                     <p class="subtitle">Personalized Board Coaching • NCL Sindhu, Kompally</p>
                 </header>
-                <p>Welcome! I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated exclusively to the Class 10 board curriculum (CBSE/ICSE/State).</p>
+                <p>Welcome! My name is Suvarchala and I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated exclusively to the Class 10 board curriculum (CBSE/ICSE/State).</p>
                 <p>By prioritizing fundamental structural concepts and targeted exam practice patterns, I help students dissolve math stress and achieve high scores.</p>
                 <p>Classes are held locally within the community infrastructure, completely eliminating commuting time.</p>
-                <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Ma'am,%20I'm%20a%20resident%20of%20NCL%20Sindhu%20and%20would%20like%20to%20inquire%20about%20your%20Class%2010%20Math%20batches." class="cta-btn" target="_blank">Inquire via WhatsApp</a>
+                <a href="https://wa.me/919849431113?text=Hi%20Ma'am,%20I'm%20a%20resident%20of%20NCL%20Sindhu%20and%20would%20like%20to%20inquire%20about%20your%20Class%2010%20Math%20batches." class="cta-btn" target="_blank">Inquire via WhatsApp</a>
             </div>
         </div>
 
-        <!-- PRIVATE ADMINISTRATIVE SYSTEM -->
         <div id="view-ledger" class="hidden">
             <header>
                 <h1>Math Batches Ledger</h1>
                 <p class="subtitle">Internal Accounting & Student Rosters</p>
             </header>
 
-            <!-- Operational Summary Cards -->
             <div class="metrics-bar">
                 <div class="metric-card">
                     <div class="metric-label">Active Students</div>
@@ -251,7 +249,6 @@
                 </div>
             </div>
 
-            <!-- Context Filtering Toolbar -->
             <div class="filter-toolbar">
                 <span style="font-size: 12px; font-weight:700; color:var(--gray-text);">BATCH:</span>
                 <div class="filter-group" id="filter-batch">
@@ -275,7 +272,6 @@
                 </div>
             </div>
 
-            <!-- Unified Spreadsheet Table Grid -->
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -289,16 +285,14 @@
                             <th onclick="sortTable('mode')">Mode ⇅</th>
                             <th onclick="sortTable('feesAmount')">Monthly Fees ⇅</th>
                             <th>Status</th>
-                            <th style="width: 60px;">Action</th>
+                            <th style="width: 65px;">Action</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
-                        <!-- Dynamic content blocks injected here -->
-                    </tbody>
+                        </tbody>
                     <tfoot>
-                        <!-- Inline Data Insertion Row -->
                         <tr style="background-color: var(--gray-light); border-top: 2px solid var(--text);">
-                            <td><input type="text" id="in-name" class="table-input" placeholder="Name" autocomplete="off"></td>
+                            <td><input type="text" id="in-name" class="table-input" placeholder="+ Add Name" autocomplete="off"></td>
                             <td><input type="text" id="in-cname" class="table-input" placeholder="Parent Name" autocomplete="off"></td>
                             <td><input type="tel" id="in-phone" class="table-input" placeholder="Phone" autocomplete="off"></td>
                             <td><input type="date" id="in-date" class="table-input"></td>
@@ -322,8 +316,8 @@
                                 </select>
                             </td>
                             <td><input type="number" id="in-fees" class="table-input" placeholder="₹ Amount" autocomplete="off"></td>
-                            <td style="text-align: center; color: var(--gray-text); font-style: italic; font-size:11px;">New</td>
-                            <td><button class="inline-add-btn" onclick="addStudentInline()">+</button></td>
+                            <td style="text-align: center; color: var(--gray-text); font-style: italic; font-size:11px; padding:0;">—</td>
+                            <td><button class="inline-add-btn" onclick="addStudentInline()">Save</button></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -332,25 +326,19 @@
     </div>
 
     <script>
-        // Core persistent database layer
         let students = JSON.parse(localStorage.getItem('tutor_students')) || [];
-        
-        // Active display filter states
         let filters = { batch: 'all', mode: 'all', status: 'all' };
         let currentSort = { column: null, asc: true };
 
-        // Security check via address parameters
         const urlParams = new URLSearchParams(window.location.search);
         const secretKey = urlParams.get('view');
 
-        // Initial Routing Logic
         if (secretKey === 'ledger') {
             document.getElementById('view-ledger').classList.remove('hidden');
             document.getElementById('in-date').valueAsDate = new Date();
             renderDashboard();
         } else {
             document.getElementById('view-public').classList.remove('hidden');
-            // If anyone inspects code or tries to guess elements, explicitly purge core logic tracking components
             document.getElementById('view-ledger').remove();
         }
 
@@ -359,7 +347,6 @@
             const tbody = document.getElementById('table-body');
             tbody.innerHTML = '';
 
-            // Apply filter matrices
             let displayedList = students.filter(student => {
                 if (filters.batch !== 'all' && student.batch !== filters.batch) return false;
                 if (filters.mode !== 'all' && student.mode !== filters.mode) return false;
@@ -370,16 +357,11 @@
                 return true;
             });
 
-            // Apply column sort metrics if selected
             if (currentSort.column) {
                 displayedList.sort((a, b) => {
                     let valA = a[currentSort.column];
                     let valB = b[currentSort.column];
-                    
-                    if (currentSort.column === 'feesAmount') {
-                        return currentSort.asc ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
-                    }
-                    
+                    if (currentSort.column === 'feesAmount') return currentSort.asc ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
                     valA = String(valA).toLowerCase();
                     valB = String(valB).toLowerCase();
                     return currentSort.asc ? valA.localeCompare(valB) : valB.localeCompare(valA);
@@ -387,14 +369,12 @@
             }
 
             if (displayedList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:30px; color:var(--gray-text);">No matching student data available.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:30px; color:var(--gray-text);">No matching records found.</td></tr>`;
                 return;
             }
 
             displayedList.forEach((student) => {
-                // Find original master index sequence point for correct array mutation mapping
                 const masterIndex = students.indexOf(student);
-
                 let dateString = student.startDate;
                 try {
                     const d = new Date(student.startDate);
@@ -421,19 +401,14 @@
         }
 
         function calculateMetrics() {
-            const count = students.length;
-            let total = 0;
-            let collected = 0;
-            let pending = 0;
-
+            let total = 0, collected = 0, pending = 0;
             students.forEach(s => {
                 const amt = Number(s.feesAmount) || 0;
                 total += amt;
                 if (s.feesPaid) collected += amt;
                 else pending += amt;
             });
-
-            document.getElementById('metric-count').innerText = count;
+            document.getElementById('metric-count').innerText = students.length;
             document.getElementById('metric-total').innerText = `₹${total}`;
             document.getElementById('metric-collected').innerText = `₹${collected}`;
             document.getElementById('metric-pending').innerText = `₹${pending}`;
@@ -450,26 +425,17 @@
             const fees = document.getElementById('in-fees').value.trim();
 
             if (!name || !phone || !fees || !date) {
-                alert('Please populate Name, Phone, Date, and Fees fields before confirming insertion.');
+                alert('Please populate Name, Phone, Date, and Fees fields inside the bottom row.');
                 return;
             }
 
-            const newStudent = {
-                name,
-                contactName: cname || 'Parent',
-                contactNumber: phone,
-                startDate: date,
-                board,
-                batch,
-                mode,
-                feesAmount: fees,
-                feesPaid: false
-            };
-
-            students.push(newStudent);
+            students.push({
+                name, contactName: cname || 'Parent', contactNumber: phone,
+                startDate: date, board, batch, mode, feesAmount: fees, feesPaid: false
+            });
+            
             localStorage.setItem('tutor_students', JSON.stringify(students));
             
-            // Clear inputs
             document.getElementById('in-name').value = '';
             document.getElementById('in-cname').value = '';
             document.getElementById('in-phone').value = '';
@@ -486,7 +452,7 @@
         }
 
         function deleteStudent(masterIndex) {
-            if (confirm(`Permanently drop tracking record for ${students[masterIndex].name}?`)) {
+            if (confirm(`Permanently remove ${students[masterIndex].name}?`)) {
                 students.splice(masterIndex, 1);
                 localStorage.setItem('tutor_students', JSON.stringify(students));
                 renderDashboard();
@@ -495,8 +461,6 @@
 
         function setFilter(category, value) {
             filters[category] = value;
-            
-            // UI Toggle indicator logic
             const container = document.getElementById(`filter-${category}`);
             const buttons = container.getElementsByClassName('filter-btn');
             for (let btn of buttons) {
@@ -510,12 +474,8 @@
         }
 
         function sortTable(columnName) {
-            if (currentSort.column === columnName) {
-                currentSort.asc = !currentSort.asc;
-            } else {
-                currentSort.column = columnName;
-                currentSort.asc = true;
-            }
+            if (currentSort.column === columnName) { currentSort.asc = !currentSort.asc; } 
+            else { currentSort.column = columnName; currentSort.asc = true; }
             renderDashboard();
         }
     </script>
