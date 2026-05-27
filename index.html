@@ -86,7 +86,6 @@
         }
 
         /* LEDGER DASHBOARD ARCHITECTURE */
-        /* KPI Metrics Bar */
         .metrics-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -155,7 +154,6 @@
         }
         th:hover { background: #eee; }
         
-        /* Table Input Fields (Inline Addition Row) */
         .table-input {
             width: 100%;
             padding: 6px;
@@ -211,25 +209,28 @@
 <body>
 
     <div class="container">
+        <!-- GLOBAL PUBLIC INTERFACE -->
         <div id="view-public" class="hidden">
             <div class="public-card">
                 <header style="border-bottom: 1px solid var(--text); margin-bottom: 20px;">
-                    <h1>Class 10 Mathematics</h1>
-                    <p class="subtitle">Personalized Board Coaching • NCL Sindhu, Kompally</p>
+                    <h1>Class 10 Mathematics | CBSE | STATE | ICSE </h1>
+                    <p class="subtitle">Suvarchala Math Coaching • NCL Sindhu, Kompally</p>
                 </header>
-                <p>Welcome! My name is Suvarchala and I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated exclusively to the Class 10 board curriculum (CBSE/ICSE/State).</p>
+                <p>Welcome! I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated exclusively to the Class 10 board curriculum (CBSE/ICSE/State).</p>
                 <p>By prioritizing fundamental structural concepts and targeted exam practice patterns, I help students dissolve math stress and achieve high scores.</p>
                 <p>Classes are held locally within the community infrastructure, completely eliminating commuting time.</p>
                 <a href="https://wa.me/919849431113?text=Hi%20Ma'am,%20I'm%20a%20resident%20of%20NCL%20Sindhu%20and%20would%20like%20to%20inquire%20about%20your%20Class%2010%20Math%20batches." class="cta-btn" target="_blank">Inquire via WhatsApp</a>
             </div>
         </div>
 
+        <!-- PRIVATE ADMINISTRATIVE SYSTEM -->
         <div id="view-ledger" class="hidden">
             <header>
                 <h1>Math Batches Ledger</h1>
                 <p class="subtitle">Internal Accounting & Student Rosters</p>
             </header>
 
+            <!-- Operational Summary Cards -->
             <div class="metrics-bar">
                 <div class="metric-card">
                     <div class="metric-label">Active Students</div>
@@ -249,6 +250,7 @@
                 </div>
             </div>
 
+            <!-- Context Filtering Toolbar -->
             <div class="filter-toolbar">
                 <span style="font-size: 12px; font-weight:700; color:var(--gray-text);">BATCH:</span>
                 <div class="filter-group" id="filter-batch">
@@ -272,6 +274,7 @@
                 </div>
             </div>
 
+            <!-- Unified Spreadsheet Table Grid -->
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -289,8 +292,10 @@
                         </tr>
                     </thead>
                     <tbody id="table-body">
-                        </tbody>
+                        <!-- Dynamic content blocks injected here -->
+                    </tbody>
                     <tfoot>
+                        <!-- Inline Data Insertion Row -->
                         <tr style="background-color: var(--gray-light); border-top: 2px solid var(--text);">
                             <td><input type="text" id="in-name" class="table-input" placeholder="+ Add Name" autocomplete="off"></td>
                             <td><input type="text" id="in-cname" class="table-input" placeholder="Parent Name" autocomplete="off"></td>
@@ -333,12 +338,15 @@
         const urlParams = new URLSearchParams(window.location.search);
         const secretKey = urlParams.get('view');
 
+        // Absolute routing separation gatekeeper
         if (secretKey === 'ledger') {
             document.getElementById('view-ledger').classList.remove('hidden');
             document.getElementById('in-date').valueAsDate = new Date();
             renderDashboard();
         } else {
+            // Display clean parent profile card
             document.getElementById('view-public').classList.remove('hidden');
+            // Hard delete the ledger elements entirely from the client browser session
             document.getElementById('view-ledger').remove();
         }
 
