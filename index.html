@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Coaching | 30 Years Experience</title>
+    <title>Math Coaching Dashboard</title>
     <style>
         :root {
             --bg: #ffffff;
             --text: #000000;
-            --gray-light: #f5f5f5;
-            --gray-border: #e0e0e0;
+            --gray-light: #f9f9f9;
+            --gray-border: #cccccc;
             --gray-text: #666666;
         }
 
@@ -23,44 +23,50 @@
         body {
             background-color: var(--bg);
             color: var(--text);
-            padding: 20px;
+            padding: 30px 20px;
             display: flex;
             justify-content: center;
         }
 
         .container {
             width: 100%;
-            max-width: 480px;
-            margin-top: 20px;
+            max-width: 1000px; /* Expanded for desktop/tablet tabular view */
         }
+
+        .hidden { display: none !important; }
 
         /* Typography & Header */
         header {
-            margin-bottom: 40px;
-            border-bottom: 1px solid var(--text);
-            padding-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--text);
+            padding-bottom: 15px;
         }
 
         h1 {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 26px;
+            font-weight: 800;
             letter-spacing: -0.5px;
-            line-height: 1.2;
         }
 
         .subtitle {
-            font-size: 16px;
+            font-size: 14px;
             color: var(--gray-text);
-            margin-top: 8px;
+            margin-top: 4px;
         }
 
-        /* Public Profile Section */
-        .bio-section p {
+        /* PUBLIC VIEW ARCHITECTURE */
+        .public-card {
+            max-width: 480px;
+            margin: 40px auto;
+            border: 1px solid var(--text);
+            padding: 30px;
+            background: var(--bg);
+        }
+        .public-card p {
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
         }
-
         .cta-btn {
             display: block;
             width: 100%;
@@ -72,437 +78,445 @@
             font-weight: 600;
             font-size: 16px;
             border: 1px solid var(--text);
-            margin-top: 30px;
             cursor: pointer;
         }
-
         .cta-btn:hover {
-            background-color: var(--bg);
+            background: var(--bg);
             color: var(--text);
         }
 
-        /* Bookkeeping Dashboard */
-        .hidden {
-            display: none !important;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* LEDGER DASHBOARD ARCHITECTURE */
+        /* KPI Metrics Bar */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
             margin-bottom: 25px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--gray-border);
         }
+        .metric-card {
+            border: 1px solid var(--text);
+            padding: 15px;
+            background: var(--gray-light);
+        }
+        .metric-label { font-size: 12px; font-weight: 600; color: var(--gray-text); text-transform: uppercase; }
+        .metric-val { font-size: 22px; font-weight: 800; margin-top: 5px; }
 
-        /* Comprehensive Entry Form */
-        .student-form {
+        /* Filters Toolbar */
+        .filter-toolbar {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 35px;
-            background-color: var(--gray-light);
-            padding: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .filter-group {
+            display: flex;
             border: 1px solid var(--text);
         }
-
-        .form-row {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .form-row label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .student-form input, .student-form select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--gray-border);
+        .filter-btn {
             background: var(--bg);
-            font-size: 15px;
+            border: none;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .filter-btn:not(:last-child) { border-right: 1px solid var(--text); }
+        .filter-btn.active {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* The Consolidated Data Grid */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto; /* Responsive scrolling on small viewports */
+            border: 1px solid var(--text);
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+            min-width: 800px;
+        }
+        th, td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--gray-border);
+            vertical-align: middle;
+        }
+        th {
+            background: var(--gray-light);
+            font-weight: 700;
+            border-bottom: 2px solid var(--text);
+            cursor: pointer;
+            user-select: none;
+        }
+        th:hover { background: #eee; }
+        
+        /* Table Input Fields (Inline Addition Row) */
+        .table-input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid var(--gray-border);
+            font-size: 13px;
             outline: none;
-            color: var(--text);
         }
+        .table-input:focus { border-color: var(--text); }
+        
+        select.table-input { cursor: pointer; }
 
-        .student-form input:focus, .student-form select:focus {
-            border-color: var(--text);
-        }
-
-        /* Radio Options for Mode Selection */
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            padding: 5px 0;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        .radio-label input {
-            width: auto;
-            accent-color: var(--text);
-            cursor: pointer;
-        }
-
-        .add-btn {
+        .inline-add-btn {
             background: var(--text);
             color: var(--bg);
             border: 1px solid var(--text);
-            padding: 12px;
-            font-weight: 600;
-            font-size: 15px;
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 13px;
             cursor: pointer;
-            margin-top: 8px;
+            width: 100%;
             text-align: center;
         }
+        .inline-add-btn:hover { background: var(--bg); color: var(--text); }
 
-        .add-btn:hover {
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        /* Student Listing Card Layout */
-        .student-list {
-            list-style: none;
-        }
-
-        .student-item {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--text);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .student-main-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .student-name-title {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .badge-container {
-            display: flex;
-            gap: 6px;
-        }
-
-        .student-badge {
+        /* Row Badges & Controls */
+        .row-badge {
             font-size: 11px;
             font-weight: 700;
             border: 1px solid var(--text);
-            padding: 2px 6px;
-            text-transform: uppercase;
+            padding: 2px 5px;
+            display: inline-block;
         }
-
-        .student-details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            font-size: 14px;
-            color: var(--gray-text);
-            line-height: 1.4;
-        }
-
-        .student-details-grid span {
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        .item-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 4px;
-        }
-
-        .fee-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .fee-label input {
-            cursor: pointer;
-            accent-color: var(--text);
+        .row-badge.online { background: var(--text); color: var(--bg); }
+        
+        .fee-checkbox {
             width: 16px;
             height: 16px;
+            accent-color: var(--text);
+            cursor: pointer;
         }
-
-        .delete-btn {
+        
+        .row-del-btn {
             background: none;
             border: none;
             color: #ff3b30;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             text-decoration: underline;
-        }
-
-        /* Utility Toggle Link */
-        .view-toggle {
-            display: block;
-            text-align: center;
-            margin-top: 60px;
-            font-size: 13px;
-            color: var(--gray-text);
-            text-decoration: underline;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Shared Header -->
-        <header>
-            <h1 id="main-title">Class 10 Mathematics</h1>
-            <p class="subtitle" id="main-subtitle">Personalized Board Exam Coaching • NCL Sindhu</p>
-        </header>
-
-        <!-- VIEW 1: Public Parent Landing Page -->
-        <div id="public-view">
-            <div class="bio-section">
-                <p>Welcome! I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated to the Class 10 board curriculum.</p>
-                <p>By focusing on core concept clarity, systematic problem-solving methods, and targeted board exam preparation, I help students eliminate math anxiety and build genuine academic confidence.</p>
-                <p>Located directly within the society layout—eliminating travel time so your child can stay focused on learning.</p>
+        <!-- GLOBAL PUBLIC INTERFACE -->
+        <div id="view-public" class="hidden">
+            <div class="public-card">
+                <header style="border-bottom: 1px solid var(--text); margin-bottom: 20px;">
+                    <h1>Class 10 Mathematics</h1>
+                    <p class="subtitle">Personalized Board Coaching • NCL Sindhu, Kompally</p>
+                </header>
+                <p>Welcome! I am a senior mathematics educator with over <strong>30 years of experience</strong> dedicated exclusively to the Class 10 board curriculum (CBSE/ICSE/State).</p>
+                <p>By prioritizing fundamental structural concepts and targeted exam practice patterns, I help students dissolve math stress and achieve high scores.</p>
+                <p>Classes are held locally within the community infrastructure, completely eliminating commuting time.</p>
+                <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Ma'am,%20I'm%20a%20resident%20of%20NCL%20Sindhu%20and%20would%20like%20to%20inquire%20about%20your%20Class%2010%20Math%20batches." class="cta-btn" target="_blank">Inquire via WhatsApp</a>
             </div>
-            
-            <!-- Replace with your mom's phone number -->
-            <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I'm%20interested%20in%20the%20Class%2010%20Math%20coaching." class="cta-btn" target="_blank">
-                Inquire via WhatsApp
-            </a>
         </div>
 
-        <!-- VIEW 2: Private Bookkeeping Dashboard -->
-        <div id="admin-view" class="hidden">
-            <div class="dashboard-header">
-                <h2>Student Ledger</h2>
-                <span style="font-size: 13px; color: var(--gray-text); font-weight: bold;" id="student-count">0 Students</span>
+        <!-- PRIVATE ADMINISTRATIVE SYSTEM -->
+        <div id="view-ledger" class="hidden">
+            <header>
+                <h1>Math Batches Ledger</h1>
+                <p class="subtitle">Internal Accounting & Student Rosters</p>
+            </header>
+
+            <!-- Operational Summary Cards -->
+            <div class="metrics-bar">
+                <div class="metric-card">
+                    <div class="metric-label">Active Students</div>
+                    <div class="metric-val" id="metric-count">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Projected Revenue</div>
+                    <div class="metric-val" id="metric-total">₹0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Fees Collected</div>
+                    <div class="metric-val" id="metric-collected" style="color: #2e7d32;">₹0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Pending Collection</div>
+                    <div class="metric-val" id="metric-pending" style="color: #c62828;">₹0</div>
+                </div>
             </div>
 
-            <!-- Enhanced Registration Form -->
-            <form class="student-form" id="student-form" onsubmit="addStudent(event)">
-                <div class="form-row">
-                    <label for="student-name">Student Name</label>
-                    <input type="text" id="student-name" required autocomplete="off">
-                </div>
-                
-                <div class="form-row">
-                    <label for="contact-number">Contact Number</label>
-                    <input type="tel" id="contact-number" placeholder="e.g. 9876543210" required autocomplete="off">
+            <!-- Context Filtering Toolbar -->
+            <div class="filter-toolbar">
+                <span style="font-size: 12px; font-weight:700; color:var(--gray-text);">BATCH:</span>
+                <div class="filter-group" id="filter-batch">
+                    <button class="filter-btn active" onclick="setFilter('batch', 'all')">All</button>
+                    <button class="filter-btn" onclick="setFilter('batch', 'Batch 1')">Batch 1</button>
+                    <button class="filter-btn" onclick="setFilter('batch', 'Batch 2')">Batch 2</button>
                 </div>
 
-                <div class="form-row">
-                    <label for="contact-name">Name of Contact Person</label>
-                    <input type="text" id="contact-name" placeholder="e.g. Parent Name" required autocomplete="off">
+                <span style="font-size: 12px; font-weight:700; color:var(--gray-text); margin-left: 10px;">MODE:</span>
+                <div class="filter-group" id="filter-mode">
+                    <button class="filter-btn active" onclick="setFilter('mode', 'all')">All</button>
+                    <button class="filter-btn" onclick="setFilter('mode', 'Offline')">Offline</button>
+                    <button class="filter-btn" onclick="setFilter('mode', 'Online')">Online</button>
                 </div>
 
-                <div class="form-row">
-                    <label for="start-date">Start Date</label>
-                    <input type="date" id="start-date" required>
+                <span style="font-size: 12px; font-weight:700; color:var(--gray-text); margin-left: 10px;">STATUS:</span>
+                <div class="filter-group" id="filter-status">
+                    <button class="filter-btn active" onclick="setFilter('status', 'all')">All</button>
+                    <button class="filter-btn" onclick="setFilter('status', 'paid')">Paid</button>
+                    <button class="filter-btn" onclick="setFilter('status', 'pending')">Unpaid</button>
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <label for="student-board">Board Selection</label>
-                    <select id="student-board" required>
-                        <option value="" disabled selected>Select Board</option>
-                        <option value="CBSE">CBSE</option>
-                        <option value="ICSE">ICSE</option>
-                        <option value="STATE">STATE</option>
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <label for="student-batch">Batch Assignment</label>
-                    <select id="student-batch" required>
-                        <option value="" disabled selected>Select Batch</option>
-                        <option value="Batch 1">Batch 1</option>
-                        <option value="Batch 2">Batch 2</option>
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <label>Mode of Class</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="class-mode" value="Offline" checked> Offline
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="class-mode" value="Online"> Online
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <label for="fees-amount">Agreed Fees Amount (₹)</label>
-                    <input type="number" id="fees-amount" placeholder="Monthly amount" required autocomplete="off">
-                </div>
-
-                <button type="submit" class="add-btn">Save Student Record</button>
-            </form>
-
-            <!-- Student Cards List -->
-            <ul class="student-list" id="students-container">
-                <!-- Dynamic Content -->
-            </ul>
+            <!-- Unified Spreadsheet Table Grid -->
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('name')">Student Name ⇅</th>
+                            <th onclick="sortTable('contactName')">Contact Person ⇅</th>
+                            <th onclick="sortTable('contactNumber')">Phone ⇅</th>
+                            <th onclick="sortTable('startDate')">Start Date ⇅</th>
+                            <th onclick="sortTable('board')">Board ⇅</th>
+                            <th onclick="sortTable('batch')">Batch ⇅</th>
+                            <th onclick="sortTable('mode')">Mode ⇅</th>
+                            <th onclick="sortTable('feesAmount')">Monthly Fees ⇅</th>
+                            <th>Status</th>
+                            <th style="width: 60px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Dynamic content blocks injected here -->
+                    </tbody>
+                    <tfoot>
+                        <!-- Inline Data Insertion Row -->
+                        <tr style="background-color: var(--gray-light); border-top: 2px solid var(--text);">
+                            <td><input type="text" id="in-name" class="table-input" placeholder="Name" autocomplete="off"></td>
+                            <td><input type="text" id="in-cname" class="table-input" placeholder="Parent Name" autocomplete="off"></td>
+                            <td><input type="tel" id="in-phone" class="table-input" placeholder="Phone" autocomplete="off"></td>
+                            <td><input type="date" id="in-date" class="table-input"></td>
+                            <td>
+                                <select id="in-board" class="table-input">
+                                    <option value="CBSE">CBSE</option>
+                                    <option value="ICSE">ICSE</option>
+                                    <option value="STATE">STATE</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="in-batch" class="table-input">
+                                    <option value="Batch 1">Batch 1</option>
+                                    <option value="Batch 2">Batch 2</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="in-mode" class="table-input">
+                                    <option value="Offline">Offline</option>
+                                    <option value="Online">Online</option>
+                                </select>
+                            </td>
+                            <td><input type="number" id="in-fees" class="table-input" placeholder="₹ Amount" autocomplete="off"></td>
+                            <td style="text-align: center; color: var(--gray-text); font-style: italic; font-size:11px;">New</td>
+                            <td><button class="inline-add-btn" onclick="addStudentInline()">+</button></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
-
-        <!-- Footer view toggle switcher -->
-        <span class="view-toggle" id="toggle-link" onclick="toggleView()">Switch to Bookkeeping View</span>
     </div>
 
     <script>
+        // Core persistent database layer
         let students = JSON.parse(localStorage.getItem('tutor_students')) || [];
+        
+        // Active display filter states
+        let filters = { batch: 'all', mode: 'all', status: 'all' };
+        let currentSort = { column: null, asc: true };
 
-        const publicView = document.getElementById('public-view');
-        const adminView = document.getElementById('admin-view');
-        const toggleLink = document.getElementById('toggle-link');
-        const mainTitle = document.getElementById('main-title');
-        const mainSubtitle = document.getElementById('main-subtitle');
+        // Security check via address parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const secretKey = urlParams.get('view');
 
-        document.getElementById('start-date').valueAsDate = new Date();
-
-        function toggleView() {
-            if (adminView.classList.contains('hidden')) {
-                publicView.classList.add('hidden');
-                adminView.classList.remove('hidden');
-                toggleLink.innerText = "Switch to Public Profile";
-                mainTitle.innerText = "Dashboard";
-                mainSubtitle.innerText = "Internal Batch Management";
-                renderStudents();
-            } else {
-                adminView.classList.add('hidden');
-                publicView.classList.remove('hidden');
-                toggleLink.innerText = "Switch to Bookkeeping View";
-                mainTitle.innerText = "Class 10 Mathematics";
-                mainSubtitle.innerText = "Personalized Board Exam Coaching • NCL Sindhu";
-            }
+        // Initial Routing Logic
+        if (secretKey === 'ledger') {
+            document.getElementById('view-ledger').classList.remove('hidden');
+            document.getElementById('in-date').valueAsDate = new Date();
+            renderDashboard();
+        } else {
+            document.getElementById('view-public').classList.remove('hidden');
+            // If anyone inspects code or tries to guess elements, explicitly purge core logic tracking components
+            document.getElementById('view-ledger').remove();
         }
 
-        function renderStudents() {
-            const container = document.getElementById('students-container');
-            const countSpan = document.getElementById('student-count');
-            container.innerHTML = '';
-            
-            countSpan.innerText = `${students.length} Student${students.length === 1 ? '' : 's'}`;
+        function renderDashboard() {
+            calculateMetrics();
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
 
-            if (students.length === 0) {
-                container.innerHTML = `<li style="color: var(--gray-text); font-size: 14px; text-align: center; padding: 40px 0;">No logs added yet.</li>`;
+            // Apply filter matrices
+            let displayedList = students.filter(student => {
+                if (filters.batch !== 'all' && student.batch !== filters.batch) return false;
+                if (filters.mode !== 'all' && student.mode !== filters.mode) return false;
+                if (filters.status !== 'all') {
+                    if (filters.status === 'paid' && !student.feesPaid) return false;
+                    if (filters.status === 'pending' && student.feesPaid) return false;
+                }
+                return true;
+            });
+
+            // Apply column sort metrics if selected
+            if (currentSort.column) {
+                displayedList.sort((a, b) => {
+                    let valA = a[currentSort.column];
+                    let valB = b[currentSort.column];
+                    
+                    if (currentSort.column === 'feesAmount') {
+                        return currentSort.asc ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
+                    }
+                    
+                    valA = String(valA).toLowerCase();
+                    valB = String(valB).toLowerCase();
+                    return currentSort.asc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                });
+            }
+
+            if (displayedList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:30px; color:var(--gray-text);">No matching student data available.</td></tr>`;
                 return;
             }
 
-            students.forEach((student, index) => {
-                let formattedDate = student.startDate;
+            displayedList.forEach((student) => {
+                // Find original master index sequence point for correct array mutation mapping
+                const masterIndex = students.indexOf(student);
+
+                let dateString = student.startDate;
                 try {
-                    const dateObj = new Date(student.startDate);
-                    if(!isNaN(dateObj)) {
-                        formattedDate = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-                    }
+                    const d = new Date(student.startDate);
+                    if (!isNaN(d)) dateString = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: '2-digit' });
                 } catch(e) {}
 
-                // Fallback handling for older records that didn't have batch or mode tracking
-                const displayBatch = student.batch || 'Batch 1';
-                const displayMode = student.mode || 'Offline';
-
-                const li = document.createElement('li');
-                li.className = 'student-item';
-                li.innerHTML = `
-                    <div class="student-main-info">
-                        <span class="student-name-title">${student.name}</span>
-                        <div class="badge-container">
-                            <span class="student-badge">${student.board}</span>
-                            <span class="student-badge" style="background: #000; color: #fff;">${displayMode}</span>
-                        </div>
-                    </div>
-                    
-                    <div class="student-details-grid">
-                        <div>Contact Name: <span>${student.contactName}</span></div>
-                        <div>Phone: <span>${student.contactNumber}</span></div>
-                        <div>Batch Details: <span>${displayBatch}</span></div>
-                        <div>Fees Arranged: <span>₹${student.feesAmount}</span></div>
-                        <div>Start Date: <span style="grid-column: span 1;">${formattedDate}</span></div>
-                    </div>
-
-                    <div class="item-actions">
-                        <label class="fee-label">
-                            <input type="checkbox" ${student.feesPaid ? 'checked' : ''} onchange="toggleFees(${index})">
-                            Fees Paid This Month
-                        </label>
-                        <button class="delete-btn" onclick="deleteStudent(${index})">Remove</button>
-                    </div>
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight:700;">${student.name}</td>
+                    <td>${student.contactName}</td>
+                    <td>${student.contactNumber}</td>
+                    <td>${dateString}</td>
+                    <td><span class="row-badge">${student.board}</span></td>
+                    <td><strong>${student.batch || 'Batch 1'}</strong></td>
+                    <td><span class="row-badge ${student.mode === 'Online' ? 'online' : ''}">${student.mode || 'Offline'}</span></td>
+                    <td style="font-weight:600;">₹${student.feesAmount}</td>
+                    <td style="text-align:center;">
+                        <input type="checkbox" class="fee-checkbox" ${student.feesPaid ? 'checked' : ''} onchange="toggleFeeStatus(${masterIndex})">
+                    </td>
+                    <td><button class="row-del-btn" onclick="deleteStudent(${masterIndex})">Delete</button></td>
                 `;
-                container.appendChild(li);
+                tbody.appendChild(tr);
             });
         }
 
-        function addStudent(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('student-name').value.trim();
-            const contactNumber = document.getElementById('contact-number').value.trim();
-            const contactName = document.getElementById('contact-name').value.trim();
-            const startDate = document.getElementById('start-date').value;
-            const board = document.getElementById('student-board').value;
-            const batch = document.getElementById('student-batch').value;
-            const mode = document.querySelector('input[name="class-mode"]:checked').value;
-            const feesAmount = document.getElementById('fees-amount').value;
-            
+        function calculateMetrics() {
+            const count = students.length;
+            let total = 0;
+            let collected = 0;
+            let pending = 0;
+
+            students.forEach(s => {
+                const amt = Number(s.feesAmount) || 0;
+                total += amt;
+                if (s.feesPaid) collected += amt;
+                else pending += amt;
+            });
+
+            document.getElementById('metric-count').innerText = count;
+            document.getElementById('metric-total').innerText = `₹${total}`;
+            document.getElementById('metric-collected').innerText = `₹${collected}`;
+            document.getElementById('metric-pending').innerText = `₹${pending}`;
+        }
+
+        function addStudentInline() {
+            const name = document.getElementById('in-name').value.trim();
+            const cname = document.getElementById('in-cname').value.trim();
+            const phone = document.getElementById('in-phone').value.trim();
+            const date = document.getElementById('in-date').value;
+            const board = document.getElementById('in-board').value;
+            const batch = document.getElementById('in-batch').value;
+            const mode = document.getElementById('in-mode').value;
+            const fees = document.getElementById('in-fees').value.trim();
+
+            if (!name || !phone || !fees || !date) {
+                alert('Please populate Name, Phone, Date, and Fees fields before confirming insertion.');
+                return;
+            }
+
             const newStudent = {
                 name,
-                contactNumber,
-                contactName,
-                startDate,
+                contactName: cname || 'Parent',
+                contactNumber: phone,
+                startDate: date,
                 board,
                 batch,
                 mode,
-                feesAmount,
+                feesAmount: fees,
                 feesPaid: false
             };
 
             students.push(newStudent);
-            saveAndRender();
+            localStorage.setItem('tutor_students', JSON.stringify(students));
             
-            // Reset input form elements safely
-            document.getElementById('student-name').value = '';
-            document.getElementById('contact-number').value = '';
-            document.getElementById('contact-name').value = '';
-            document.getElementById('student-board').value = '';
-            document.getElementById('student-batch').value = '';
-            document.getElementById('fees-amount').value = '';
-            document.querySelector('input[name="class-mode"][value="Offline"]').checked = true;
-            document.getElementById('start-date').valueAsDate = new Date();
+            // Clear inputs
+            document.getElementById('in-name').value = '';
+            document.getElementById('in-cname').value = '';
+            document.getElementById('in-phone').value = '';
+            document.getElementById('in-fees').value = '';
+            document.getElementById('in-date').valueAsDate = new Date();
+
+            renderDashboard();
         }
 
-        function toggleFees(index) {
-            students[index].feesPaid = !students[index].feesPaid;
-            saveAndRender();
+        function toggleFeeStatus(masterIndex) {
+            students[masterIndex].feesPaid = !students[masterIndex].feesPaid;
+            localStorage.setItem('tutor_students', JSON.stringify(students));
+            renderDashboard();
         }
 
-        function deleteStudent(index) {
-            if (confirm(`Are you sure you want to remove the log for ${students[index].name}?`)) {
-                students.splice(index, 1);
-                saveAndRender();
+        function deleteStudent(masterIndex) {
+            if (confirm(`Permanently drop tracking record for ${students[masterIndex].name}?`)) {
+                students.splice(masterIndex, 1);
+                localStorage.setItem('tutor_students', JSON.stringify(students));
+                renderDashboard();
             }
         }
 
-        function saveAndRender() {
-            localStorage.setItem('tutor_students', JSON.stringify(students));
-            renderStudents();
+        function setFilter(category, value) {
+            filters[category] = value;
+            
+            // UI Toggle indicator logic
+            const container = document.getElementById(`filter-${category}`);
+            const buttons = container.getElementsByClassName('filter-btn');
+            for (let btn of buttons) {
+                if (btn.innerText.toLowerCase() === value.toLowerCase() || (value === 'all' && btn.innerText === 'All') || (value === 'paid' && btn.innerText === 'Paid') || (value === 'pending' && btn.innerText === 'Unpaid')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            }
+            renderDashboard();
+        }
+
+        function sortTable(columnName) {
+            if (currentSort.column === columnName) {
+                currentSort.asc = !currentSort.asc;
+            } else {
+                currentSort.column = columnName;
+                currentSort.asc = true;
+            }
+            renderDashboard();
         }
     </script>
 </body>
